@@ -12,7 +12,6 @@ $(window).on("load", () => {
             long = position.coords.longitude;
 
             var settings = {
-                // url: `https://climacell-microweather-v1.p.rapidapi.com/weather/nowcast?fields=precipitation,temp,feels_like,visibility,humidity,wind_direction&unit_system=si&lat=${lat}&lon=${long}`,
                 url: `https://api.climacell.co/v3/weather/realtime?fields=precipitation,temp,feels_like,visibility,humidity,wind_direction&apikey=ipXtA13qS9UyzFJGU4B0C7xC3VHy52Cw&lat=${lat}&lon=${long}`,
                 method: "GET",
          
