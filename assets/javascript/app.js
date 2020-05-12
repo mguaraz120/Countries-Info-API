@@ -12,20 +12,15 @@ $(window).on("load", () => {
             long = position.coords.longitude;
 
             var settings = {
-                async: true,
-                crossDomain: true,
-                url: `https://climacell-microweather-v1.p.rapidapi.com/weather/nowcast?fields=precipitation,temp,feels_like,visibility,humidity,wind_direction&unit_system=si&lat=${lat}&lon=${long}`,
+                // url: `https://climacell-microweather-v1.p.rapidapi.com/weather/nowcast?fields=precipitation,temp,feels_like,visibility,humidity,wind_direction&unit_system=si&lat=${lat}&lon=${long}`,
+                url: `https://api.climacell.co/v3/weather/realtime?fields=precipitation,temp,feels_like,visibility,humidity,wind_direction&apikey=ipXtA13qS9UyzFJGU4B0C7xC3VHy52Cw&lat=${lat}&lon=${long}`,
                 method: "GET",
-                headers: {
-                  "x-rapidapi-host": "climacell-microweather-v1.p.rapidapi.com",
-                  "x-rapidapi-key":
-                    "e7108ba390msh955bdeb74736d79p1475dajsn7947aa1dc155",
-                },
+         
               };
 
             $.ajax(settings).done((response) => {
-                console.log(response[0]);
-                const {temp, feels_like, humidity, visibility} = response[0];
+                console.log(response);
+                const {temp, feels_like, humidity, visibility} = response;
                 var tempDiv = $("<div>");
                 var tempP = $("<p>").text(`Temp Actual: ${temp.value} C°`);
                 var TermicaP = $("<p>").text(`La Termica: ${feels_like.value} C°`);
