@@ -19,3 +19,11 @@ body{
 .flag img{
     border-radius: 50%;
 }
+.container{
+    width: 50%;
+    height: 50%;
+}
+.size img{
+    width: 320px;
+    height: 350px;
+}
