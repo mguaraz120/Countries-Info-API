@@ -1,57 +1,54 @@
+$("#BuscarPais").on("click", function (event) {
+  event.preventDefault();
+  $(".pais").empty();
+  $(".clima").empty();
+  $(".flag").empty();
 
-$("#BuscarPais").on("click", function(event){
+  var pais = $("#paisInput").val().trim();
 
-    event.preventDefault();
-    $(".pais").empty();
-    $(".clima").empty();
-    $(".flag").empty();
+  var country = {
+    url: `https://restcountries.eu/rest/v2/name/${pais}?fullText=true`,
+    method: "GET",
+  };
 
-    var pais= $("#paisInput").val().trim();
+  $.ajax(country).done((response) => {
+    console.log(response);
+    const { name, capital, subregion, population, latlng, flag } = response[0];
+    var paisDiv = $("<div>");
+    var paisNameDiv = $("<h3>").text(name);
+    var capitalDiv = $("<p>").text(`Capital: ${capital}`);
+    var regionDiv = $("<p>").text(`Region: ${subregion}`);
+    var flagDiv = $("<div>");
+    var populationDiv = $("<p>").text(`Poblacion: ${population}`);
+    var flagImg = $("<div>").html(
+      `<img src=${flag} width='80%' height = 'auto'/>`
+    );
+    var lat = latlng[0];
+    var long = latlng[1];
 
-    var country = {
-        url: `https://restcountries.eu/rest/v2/name/${pais}?fullText=true`,
-        method: "GET"
+    paisDiv.append(capitalDiv, regionDiv, populationDiv);
+    $(".pais").append(paisDiv);
+    flagDiv.append(flagImg);
+    $(".flag").append(flagDiv, paisNameDiv);
+
+    $("#paisInput").val("");
+
+    var climaAPI = {
+      url: `https://api.climacell.co/v3/weather/realtime?fields=precipitation,temp,feels_like,visibility,humidity,wind_direction&apikey=ipXtA13qS9UyzFJGU4B0C7xC3VHy52Cw&lat=${lat}&lon=${long}`,
+      method: "GET",
     };
 
-    $.ajax(country).done((response) => {
-        console.log(response);
-        const{name, capital, subregion, population, latlng, flag} = response[0];
-        var paisDiv = $("<div>");
-        var paisNameDiv = $("<p>").text(name);
-        var capitalDiv = $("<p>").text(`Capital: ${capital}`);
-        var regionDiv = $("<p>").text(`Region: ${subregion}`);
-        var populationDiv = $("<p>").text(`Poblacion: ${population}`);
-        var flagDiv = $("<div>").html(`<img src=${flag} width='80%' height = 'auto'/>`)
-        var lat = latlng[0];
-        var long = latlng[1];
+    $.ajax(climaAPI).done((response) => {
+      console.log(response);
+      const { temp, feels_like, humidity, visibility } = response;
+      var tempDiv = $("<div>");
+      var tempP = $("<p>").text(`Temp Actual: ${temp.value} C°`);
+      var TermicaP = $("<p>").text(`La Termica: ${feels_like.value} C°`);
+      var humedad = $("<p>").text(`Humedad: ${humidity.value} %`);
+      var visibilidad = $("<p>").text(`visibility: ${visibility.value} Km`);
 
-        paisDiv.append(paisNameDiv, capitalDiv, regionDiv, populationDiv);
-        $(".pais").append(paisDiv);
-        $(".flag").append(flagDiv);
-
-        $("#paisInput").val("");
-
-        var climaAPI = {
-            url: `https://api.climacell.co/v3/weather/realtime?fields=precipitation,temp,feels_like,visibility,humidity,wind_direction&apikey=ipXtA13qS9UyzFJGU4B0C7xC3VHy52Cw&lat=${lat}&lon=${long}`,
-            method: "GET"
-        
-            };
-
-            
-        $.ajax(climaAPI).done((response) => {
-            console.log(response);
-            const {temp, feels_like, humidity, visibility} = response;
-            var tempDiv = $("<div>");
-            var tempP = $("<p>").text(`Temp Actual: ${temp.value} C°`);
-            var TermicaP = $("<p>").text(`La Termica: ${feels_like.value} C°`);
-            var humedad = $("<p>").text(`Humedad: ${humidity.value} %`);
-            var visibilidad = $("<p>").text(`visibility: ${visibility.value} Km`);
-            
-            tempDiv.append(tempP, TermicaP, humedad, visibilidad);
-            $(".clima").append(tempDiv);
-            
-        })
-        
-    })
-})
-        
+      tempDiv.append(tempP, TermicaP, humedad, visibilidad);
+      $(".clima").append(tempDiv);
+    });
+  });
+});
