@@ -9,6 +9,18 @@ body {
   color: white;
   font-family: sans-serif;
 }
+button {
+  border-radius: 10px;
+}
+button:hover {
+  background-color: teal;
+  color: white;
+  border: 2px solid green;
+  border-radius: 10px;
+}
+input{
+  border-radius: 10px;
+}
 .cajaTexto {
   margin-left: 5%;
 }
