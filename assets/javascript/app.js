@@ -50,5 +50,22 @@ $("#BuscarPais").on("click", function (event) {
       tempDiv.append(tempP, TermicaP, humedad, visibilidad);
       $(".clima").append(tempDiv);
     });
+
+    var wikiAPI = {
+        url: `https://en.wikipedia.org/w/api.php?action=query&list=search&prop=info&inprop=url&utf8=&format=json&origin=*&srlimit=20&srsearch=${pais}+culture`,
+        method: "GET",
+      };
+
+    $.ajax(wikiAPI).done((response) => {
+        
+        console.log(response);
+        var wikiDiv = $("<div>")
+        for (let i = 0; i < 20; i++) {
+            var snippet = response.query.search[i].snippet;
+            wikiDiv.append(snippet);
+        }
+        $(".historia").append(wikiDiv)
+    })
+
   });
 });
