@@ -45,6 +45,16 @@ input{
 .titulo {
   font-size: 18px;
 }
+.historia {
+  margin-left: 5%;
+}
+.historia div {
+  margin-left: 5%;
+  width: 90%;
+  font-size: 14px;
+  font-family: sans-serif;
+  color: white;
+}
 @media screen and (max-width: 750px) {
   .size img {
     height: 200px;
