@@ -1,3 +1,68 @@
+function ochoPaises(){
+  return{
+    argentina:{
+      name: "argentina",
+      imagen: "assets/images/Argentina.jpg"
+    },
+    australia: {
+      name: "australia",
+      imagen: "assets/images/Australia.jpg"
+    },
+    china:{
+      name: "china",
+      imagen: "assets/images/China.jpg"
+    },
+    egypt:{
+      name: "egypt",
+      imagen: "assets/images/Egypt.jpg"
+    },
+    france:{
+      name: "france",
+      imagen: "assets/images/France.jpg"
+    },
+    england: {
+      name: "greatbritain",
+      imagen: "assets/images/England.jpg"
+    },
+    russia:{
+      name: "rusia",
+      imagen: "assets/images/Russia.jpg"
+    },
+    usa:{
+      name: "usa",
+      imagen: "assets/images/USA.jpg"
+    }
+  }
+}
+var paisName;
+function actualizar(dataPais){
+  paisName = primerosPaises[dataPais.attr("data-name")].name;
+}
+
+var primerosPaises = ochoPaises();
+
+function mostrarPaises(){
+  for (var key in primerosPaises){
+    var paisDiv = $(`<div class='pais-boton' data-name='${primerosPaises[key].name}'>`);
+    var paisImg = $(`<img alt='imagen' class='paisImg' width='25%' height='300px'>`).attr("src", primerosPaises[key].imagen);
+    paisDiv.append(paisImg);
+    $(".paisesArea").append(paisDiv);
+  }
+}
+mostrarPaises();
+
+$(".pais-boton").on("click", function(){
+  actualizar($(this)),
+  $(".pais").empty();
+  $(".clima").empty();
+  $(".flag").empty();
+  $(".paisArea").empty();
+  pais=paisName;
+  api(pais);
+})
+
+
+
 $("#BuscarPais").on("click", function (event) {
   event.preventDefault();
   $(".pais").empty();
@@ -5,6 +70,11 @@ $("#BuscarPais").on("click", function (event) {
   $(".flag").empty();
 
   var pais = $("#paisInput").val().trim();
+
+  api(pais);
+});
+
+function api (pais){
 
   var country = {
     url: `https://restcountries.eu/rest/v2/name/${pais}?fullText=true`,
@@ -68,4 +138,4 @@ $("#BuscarPais").on("click", function (event) {
     })
 
   });
-});
+}
