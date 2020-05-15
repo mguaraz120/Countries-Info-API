@@ -6,6 +6,7 @@
 body {
   align-items: center;
   background: linear-gradient(rgb(47, 150, 163), rgb(48, 62, 143));
+  background-repeat: no-repeat;
   color: white;
   font-family: sans-serif;
 }
@@ -21,9 +22,7 @@ button:hover {
 input{
   border-radius: 10px;
 }
-.cajaTexto {
-  margin-left: 5%;
-}
+
 .carta {
   border: none;
   font-size: 20px;
@@ -34,15 +33,15 @@ input{
 .flag {
   text-align: center;
 }
-.container {
-  width: 60%;
-  margin-top: 10px;
-  margin-bottom: 10px;
+.paisesArea img{
+  float: left;
 }
-.size img {
-  height: 360px;
+.paisesArea{
+  margin: 5%;
 }
+
 .titulo {
+  margin-top: 10%;
   font-size: 18px;
 }
 .historia {
@@ -56,9 +55,7 @@ input{
   color: white;
 }
 @media screen and (max-width: 750px) {
-  .size img {
-    height: 200px;
-  }
+ 
   .cajaTexto input {
     width: 50%;
   }
@@ -68,17 +65,13 @@ input{
   .carta {
     font-size: 14px;
   }
-  .container {
-    width: 70%;
-  }
+ 
   .titulo {
     font-size: 14px;
   }
 }
 @media screen and (max-width: 575px) {
-  .size img {
-    height: 200px;
-  }
+ 
   .cajaTexto input {
     width: 50%;
   }
@@ -92,9 +85,7 @@ input{
   .titulo {
     font-size: 14px;
   }
-  .container {
-    width: 80%;
-  }
+ 
   .pais {
     margin-left: 15%;
     font-size: 14px;
