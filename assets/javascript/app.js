@@ -54,6 +54,8 @@ function mostrarPaises() {
   }
 }
 mostrarPaises();
+let audio1 = new Audio("assets/audio/inca.mp3");
+let audio2 = new Audio("assets/audio/Libertango.wav");
 
 $(".pais-boton").on("click", function () {
   actualizar($(this)), $(".pais").empty();
@@ -61,6 +63,16 @@ $(".pais-boton").on("click", function () {
   $(".flag").empty();
   $(".paisArea").empty();
   $(".historia").empty();
+  if (paisName === "peru") {
+    audio1.play();
+  } else {
+    audio1.pause();
+  }
+  if (paisName === "argentina") {
+    audio2.play();
+  } else {
+    audio2.pause();
+  }
   pais = paisName;
   api(pais);
 });
@@ -71,9 +83,7 @@ $("#BuscarPais").on("click", function (event) {
   $(".clima").empty();
   $(".flag").empty();
   $(".historia").empty();
-
   var pais = $("#paisInput").val().trim();
-
   api(pais);
 });
 
