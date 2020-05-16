@@ -1,81 +1,83 @@
-function ochoPaises(){
-  return{
-    argentina:{
+function ochoPaises() {
+  return {
+    argentina: {
       name: "argentina",
-      imagen: "assets/images/Argentina.jpg"
+      imagen: "assets/images/Argentina.jpg",
     },
     australia: {
       name: "australia",
-      imagen: "assets/images/Australia.jpg"
+      imagen: "assets/images/Australia.jpg",
     },
-    china:{
+    china: {
       name: "china",
-      imagen: "assets/images/China.jpg"
+      imagen: "assets/images/China.jpg",
     },
-    egypt:{
+    egypt: {
       name: "egypt",
-      imagen: "assets/images/Egypt.jpg"
+      imagen: "assets/images/Egypt.jpg",
     },
-    france:{
+    france: {
       name: "france",
-      imagen: "assets/images/France.jpg"
+      imagen: "assets/images/France.jpg",
     },
     england: {
       name: "greatbritain",
-      imagen: "assets/images/England.jpg"
+      imagen: "assets/images/England.jpg",
     },
-    russia:{
+    russia: {
       name: "rusia",
-      imagen: "assets/images/Russia.jpg"
+      imagen: "assets/images/Russia.jpg",
     },
-    usa:{
+    usa: {
       name: "usa",
-      imagen: "assets/images/USA.jpg"
-    }
-  }
+      imagen: "assets/images/USA.jpg",
+    },
+  };
 }
 var paisName;
-function actualizar(dataPais){
+function actualizar(dataPais) {
   paisName = primerosPaises[dataPais.attr("data-name")].name;
 }
 
 var primerosPaises = ochoPaises();
 
-function mostrarPaises(){
-  for (var key in primerosPaises){
-    var paisDiv = $(`<div class='pais-boton' data-name='${primerosPaises[key].name}'>`);
-    var paisImg = $(`<img alt='imagen' class='paisImg' width='25%' height='300px'>`).attr("src", primerosPaises[key].imagen);
+function mostrarPaises() {
+  for (var key in primerosPaises) {
+    var paisDiv = $(
+      `<div class='pais-boton' data-name='${primerosPaises[key].name}'>`
+    );
+    var paisImg = $(
+      `<img alt='imagen' class='paisImg' width='25%' height='260px'>`
+    ).attr("src", primerosPaises[key].imagen);
     paisDiv.append(paisImg);
     $(".paisesArea").append(paisDiv);
   }
 }
 mostrarPaises();
 
-$(".pais-boton").on("click", function(){
-  actualizar($(this)),
-  $(".pais").empty();
+$(".pais-boton").on("click", function () {
+  actualizar($(this)), $(".pais").empty();
   $(".clima").empty();
   $(".flag").empty();
   $(".paisArea").empty();
-  pais=paisName;
+  $(".historia").empty();
+  pais = paisName;
   api(pais);
-})
-
-
+});
 
 $("#BuscarPais").on("click", function (event) {
   event.preventDefault();
   $(".pais").empty();
   $(".clima").empty();
   $(".flag").empty();
+  $(".historia").empty();
 
   var pais = $("#paisInput").val().trim();
 
   api(pais);
 });
 
-function api (pais){
-
+function api(pais) {
   var country = {
     url: `https://restcountries.eu/rest/v2/name/${pais}?fullText=true`,
     method: "GET",
@@ -122,20 +124,18 @@ function api (pais){
     });
 
     var wikiAPI = {
-        url: `https://en.wikipedia.org/w/api.php?action=query&list=search&prop=info&inprop=url&utf8=&format=json&origin=*&srlimit=20&srsearch=${pais}+culture`,
-        method: "GET",
-      };
+      url: `https://en.wikipedia.org/w/api.php?action=query&list=search&prop=info&inprop=url&utf8=&format=json&origin=*&srlimit=20&srsearch=${pais}+culture`,
+      method: "GET",
+    };
 
     $.ajax(wikiAPI).done((response) => {
-        
-        console.log(response);
-        var wikiDiv = $("<div>")
-        for (let i = 0; i < 20; i++) {
-            var snippet = response.query.search[i].snippet;
-            wikiDiv.append(snippet);
-        }
-        $(".historia").append(wikiDiv)
-    })
-
+      console.log(response);
+      var wikiDiv = $("<div>");
+      for (let i = 0; i < 20; i++) {
+        var snippet = response.query.search[i].snippet;
+        wikiDiv.append(snippet);
+      }
+      $(".historia").append(wikiDiv);
+    });
   });
 }

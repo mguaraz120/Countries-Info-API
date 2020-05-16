@@ -10,6 +10,10 @@
       integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
       crossorigin="anonymous"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
     <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
@@ -17,12 +21,15 @@
   </head>
   <body>
     <div class="paisesArea"></div>
-    
-  
-      <h5 class="card-title titulo">Destino(Pais)</h5>
-      <input type="search" name="" id="paisInput" />
-      <button type="submit" id="BuscarPais">Submit</button>
-
+    <input
+      type="search"
+      name=""
+      id="paisInput"
+      placeholder="Busca tu pais favorito"
+    />
+    <button type="submit" class="btn btn-success" id="BuscarPais">
+      <i class="fa fa-search"></i>
+    </button>
     <div class="row">
       <div class="col-sm-4">
         <div class="card carta" style="background-color: transparent;">

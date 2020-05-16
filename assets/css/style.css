@@ -4,14 +4,16 @@
   box-sizing: border-box;
 }
 body {
-  align-items: center;
   background: linear-gradient(rgb(47, 150, 163), rgb(48, 62, 143));
   background-repeat: no-repeat;
   color: white;
   font-family: sans-serif;
 }
 button {
-  border-radius: 10px;
+  margin-top: -2px;
+  width: 50px;
+  height: 35px;
+  border-radius: 20px;
 }
 button:hover {
   background-color: teal;
@@ -19,7 +21,10 @@ button:hover {
   border: 2px solid green;
   border-radius: 10px;
 }
-input{
+
+input {
+  height: 35px;
+  margin: 5% 0 0 5%;
   border-radius: 10px;
 }
 
@@ -33,15 +38,14 @@ input{
 .flag {
   text-align: center;
 }
-.paisesArea img{
+.paisesArea img {
   float: left;
 }
-.paisesArea{
+.paisesArea {
   margin: 5%;
 }
 
 .titulo {
-  margin-top: 10%;
   font-size: 18px;
 }
 .historia {
@@ -54,8 +58,7 @@ input{
   font-family: sans-serif;
   color: white;
 }
-@media screen and (max-width: 750px) {
- 
+@media screen and (max-width: 768px) {
   .cajaTexto input {
     width: 50%;
   }
@@ -65,13 +68,16 @@ input{
   .carta {
     font-size: 14px;
   }
- 
+
   .titulo {
     font-size: 14px;
   }
+  .paisesArea img {
+    float: left;
+    height: 160px;
+  }
 }
 @media screen and (max-width: 575px) {
- 
   .cajaTexto input {
     width: 50%;
   }
@@ -85,7 +91,10 @@ input{
   .titulo {
     font-size: 14px;
   }
- 
+  .paisesArea img {
+    float: left;
+    height: 100px;
+  }
   .pais {
     margin-left: 15%;
     font-size: 14px;
