@@ -54,7 +54,7 @@ function mostrarPaises() {
   }
 }
 mostrarPaises();
-pais = "argentina";
+pais = "cambodia";
 api(pais);
 
 let audio1 = new Audio("assets/audio/inca.mp3");
