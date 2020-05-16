@@ -61,7 +61,8 @@ let audio1 = new Audio("assets/audio/inca.mp3");
 let audio2 = new Audio("assets/audio/Libertango.wav");
 
 $(".pais-boton").on("click", function () {
-  actualizar($(this)), $(".pais").empty();
+  actualizar($(this)), 
+  $(".pais").empty();
   $(".clima").empty();
   $(".flag").empty();
   $(".paisArea").empty();
