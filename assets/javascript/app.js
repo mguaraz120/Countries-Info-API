@@ -54,6 +54,9 @@ function mostrarPaises() {
   }
 }
 mostrarPaises();
+pais = "argentina";
+api(pais);
+
 let audio1 = new Audio("assets/audio/inca.mp3");
 let audio2 = new Audio("assets/audio/Libertango.wav");
 
@@ -143,7 +146,7 @@ function api(pais) {
     });
 
     var wikiAPI = {
-      url: `https://en.wikipedia.org/w/api.php?action=query&list=search&prop=info&inprop=url&utf8=&format=json&origin=*&srlimit=20&srsearch=${pais}+culture`,
+      url: `https://en.wikipedia.org/w/api.php?action=query&list=search&prop=info&inprop=url&utf8=&format=json&origin=*&srlimit=20&srsearch=${pais}+history`,
       method: "GET",
     };
 
