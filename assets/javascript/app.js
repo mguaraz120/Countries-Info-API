@@ -20,13 +20,13 @@ function ochoPaises() {
       name: "france",
       imagen: "assets/images/France.jpg",
     },
-    england: {
-      name: "greatbritain",
-      imagen: "assets/images/England.jpg",
+    iceland: {
+      name: "iceland",
+      imagen: "assets/images/iceland.jpg",
     },
-    russia: {
-      name: "rusia",
-      imagen: "assets/images/Russia.jpg",
+    peru: {
+      name: "peru",
+      imagen: "assets/images/peru.jpg",
     },
     usa: {
       name: "usa",
@@ -85,20 +85,29 @@ function api(pais) {
 
   $.ajax(country).done((response) => {
     console.log(response);
-    const { name, capital, subregion, population, latlng, flag } = response[0];
+    const {
+      name,
+      capital,
+      subregion,
+      population,
+      latlng,
+      flag,
+      currencies,
+    } = response[0];
     var paisDiv = $("<div>");
     var paisNameDiv = $("<h3>").text(name);
     var capitalDiv = $("<p>").text(`Capital: ${capital}`);
     var regionDiv = $("<p>").text(`Region: ${subregion}`);
     var flagDiv = $("<div>");
-    var populationDiv = $("<p>").text(`Poblacion: ${population}`);
+    var populationDiv = $("<p>").text(`Population: ${population}`);
+    var currencyDiv = $("<p>").text(`Currency: ${currencies[0].name}`);
     var flagImg = $("<div>").html(
       `<img src=${flag} width='80%' height = 'auto'/>`
     );
     var lat = latlng[0];
     var long = latlng[1];
 
-    paisDiv.append(capitalDiv, regionDiv, populationDiv);
+    paisDiv.append(capitalDiv, regionDiv, populationDiv, currencyDiv);
     $(".pais").append(paisDiv);
     flagDiv.append(flagImg);
     $(".flag").append(flagDiv, paisNameDiv);
@@ -114,10 +123,10 @@ function api(pais) {
       console.log(response);
       const { temp, feels_like, humidity, visibility } = response;
       var tempDiv = $("<div>");
-      var tempP = $("<p>").text(`Temp Actual: ${temp.value} C°`);
-      var TermicaP = $("<p>").text(`La Termica: ${feels_like.value} C°`);
-      var humedad = $("<p>").text(`Humedad: ${humidity.value} %`);
-      var visibilidad = $("<p>").text(`visibility: ${visibility.value} Km`);
+      var tempP = $("<p>").text(`Temperature: ${temp.value} C°`);
+      var TermicaP = $("<p>").text(`Feels like: ${feels_like.value} C°`);
+      var humedad = $("<p>").text(`Humidity: ${humidity.value} %`);
+      var visibilidad = $("<p>").text(`Visibility: ${visibility.value} Km`);
 
       tempDiv.append(tempP, TermicaP, humedad, visibilidad);
       $(".clima").append(tempDiv);
@@ -135,7 +144,8 @@ function api(pais) {
         var snippet = response.query.search[i].snippet;
         wikiDiv.append(snippet);
       }
-      $(".historia").append(wikiDiv);
+      var about = $("<div>").html(`<h3>Learn more about this country:</h3>`);
+      $(".historia").append(about, wikiDiv);
     });
   });
 }
